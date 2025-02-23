@@ -10,21 +10,18 @@ import javax.imageio.ImageIO;
 
 public class PrintGambar {
   public static void saveImageSolution(Wadah wadah, String filename) throws IOException {
-    int cellSize = 50; // Ukuran setiap sel dalam pixel
-    int width = wadah.getCols() * cellSize;
-    int height = wadah.getRows() * cellSize;
+    int ukuran = 50;
+    int panjang = wadah.getCols() * ukuran;
+    int lebar = wadah.getRows() * ukuran;
 
-    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    BufferedImage image = new BufferedImage(panjang, lebar, BufferedImage.TYPE_INT_RGB);
     Graphics2D g2d = image.createGraphics();
 
-    // Set background putih
     g2d.setColor(Color.WHITE);
-    g2d.fillRect(0, 0, width, height);
+    g2d.fillRect(0, 0, panjang, lebar);
 
-    // Set font
     g2d.setFont(new Font("Arial", Font.BOLD, 20));
 
-    // Map warna untuk setiap karakter
     Map<Character, Color> colorMap = new HashMap<>();
     Color[] colors = {
         Color.RED, Color.GREEN, Color.BLUE,
@@ -36,12 +33,10 @@ public class PrintGambar {
 
     int colorIndex = 0;
 
-    // Gambar grid dan karakter
     for (int i = 0; i < wadah.getRows(); i++) {
       for (int j = 0; j < wadah.getCols(); j++) {
         char c = wadah.getCharAt(i, j);
 
-        // Set warna untuk karakter
         if (c != '.') {
           if (!colorMap.containsKey(c)) {
             colorMap.put(c, colors[colorIndex % colors.length]);
@@ -52,15 +47,13 @@ public class PrintGambar {
           g2d.setColor(Color.BLACK);
         }
 
-        // Gambar karakter
         String s = String.valueOf(c);
-        int x = j * cellSize + (cellSize - g2d.getFontMetrics().stringWidth(s)) / 2;
-        int y = i * cellSize + ((cellSize + g2d.getFontMetrics().getHeight()) / 2);
+        int x = j * ukuran + (ukuran - g2d.getFontMetrics().stringWidth(s)) / 2;
+        int y = i * ukuran + ((ukuran + g2d.getFontMetrics().getHeight()) / 2);
         g2d.drawString(s, x, y);
 
-        // Gambar grid
         g2d.setColor(Color.LIGHT_GRAY);
-        g2d.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);
+        g2d.drawRect(j * ukuran, i * ukuran, ukuran, ukuran);
       }
     }
 

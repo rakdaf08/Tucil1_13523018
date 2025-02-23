@@ -7,7 +7,6 @@ public class Main {
       try {
         new ProcessBuilder("cmd", "/c", "color").inheritIO().start().waitFor();
       } catch (Exception e) {
-        // ignore exception
       }
     }
 
@@ -70,7 +69,7 @@ public class Main {
     }
   }
 
-  private static void saveSolution(Wadah wadah, String filename) {
+  public static void saveSolution(Wadah wadah, String filename) {
     try {
       String inputfile = filename;
       if (inputfile.contains("/")) {
@@ -80,11 +79,9 @@ public class Main {
         inputfile = inputfile.substring(0, inputfile.lastIndexOf("."));
       }
 
-      // Save text solution
       String textFilename = "test/output/solusi_" + inputfile + ".txt";
       saveTextSolution(wadah, textFilename);
 
-      // Save image solution
       String imageFilename = "test//output/solusi_" + inputfile + ".png";
       PrintGambar.saveImageSolution(wadah, imageFilename);
 

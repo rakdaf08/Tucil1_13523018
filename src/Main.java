@@ -14,9 +14,11 @@ public class Main {
     try {
       Scanner scanner = new Scanner(System.in);
       System.out.println("Masukkan nama file: ");
-      String file = scanner.nextLine();
+      String filename = scanner.nextLine();
 
-      String filename = new File("../test", file).getAbsolutePath();
+      if (!filename.contains("/")) {
+        filename = "test/input/" + filename;
+      }
 
       PuzzleInput.PuzzleData puzzleData = PuzzleInput.bacaPuzzle(filename);
 
@@ -79,11 +81,11 @@ public class Main {
       }
 
       // Save text solution
-      String textFilename = "test/solusi_" + inputfile + ".txt";
+      String textFilename = "test/output/solusi_" + inputfile + ".txt";
       saveTextSolution(wadah, textFilename);
 
       // Save image solution
-      String imageFilename = "test/solusi_" + inputfile + ".png";
+      String imageFilename = "test//output/solusi_" + inputfile + ".png";
       PrintGambar.saveImageSolution(wadah, imageFilename);
 
       System.out.println("Solusi berhasil disimpan di:");

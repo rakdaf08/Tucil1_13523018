@@ -82,7 +82,7 @@ public class Main {
       String textFilename = "test/output/solusi_" + inputfile + ".txt";
       saveTextSolution(wadah, textFilename);
 
-      String imageFilename = "test//output/solusi_" + inputfile + ".png";
+      String imageFilename = "test/output/solusi_" + inputfile + ".png";
       PrintGambar.saveImageSolution(wadah, imageFilename);
 
       System.out.println("Solusi berhasil disimpan di:");
